@@ -16,6 +16,7 @@ import nodeGeocoder from 'node-geocoder';
 import fs from 'fs';
 import * as path from "path";
 import {parse} from "ts-node";
+import nodemailer from 'nodemailer';
 
 /**
  * Class for Dynamic basic helpers
@@ -165,6 +166,37 @@ class Helpers {
                 }
                 break;
         }
+    }
+
+    /**
+     * Método encargado de enviar una respuesta JSON para el API
+     *
+     * @param error
+     * @param errorCode
+     */
+    public sendApiExceptionResponse(error?: any, errorCode: number = 500) {
+        switch (errorCode) {
+            case 500:
+                this.JSONResponse(500, 'Internal Serer Error', 'Hubo un error al procesar tu solicitud. ¡Inténtalo nuevamente!', error, {});
+                break;
+            case 404:
+                this.JSONResponse(404, 'Not found', 'La iniformación que buscas, no ha sido encontrada.', error, {});
+                break;
+        }
+    }
+
+    /**
+     * Método encargado de enviar una respuesta JSON en caso de que un parámetro requerido no se encuentre en la validación del controlador
+     *
+     * @param message
+     * @constructor
+     */
+    public JSONResponseValidateParameter(message:string){
+        this.JSONResponse(
+            APP_CONFIGURATION.HTTP_STATUS_CODE.UNPROCESSABLE_ENTITY.CODE,
+            APP_CONFIGURATION.HTTP_STATUS_CODE.UNPROCESSABLE_ENTITY.MESSAGE,
+            message
+        )
     }
 
     /**

@@ -19,25 +19,45 @@ class Mail {
     }
 
     sendMail() {
-        let mailOptions = {
-            from: "noreply@localhost.test",
-            to: this.to,
-            subject: this.subject,
-            html: this.message
-        };
-        const transporter = nodemailer.createTransport({
-            host: APP_CONFIGURATION.NODEMAILER.HOST_SMTP,
-            port: APP_CONFIGURATION.NODEMAILER.HOST_PORT,
-            secure: true,
-            auth: {
-                user: APP_CONFIGURATION.NODEMAILER.SMTP_USERNAME,
-                pass: APP_CONFIGURATION.NODEMAILER.SMTP_PASSWORD
-            },
-            tls: {rejectUnauthorized: false}
-        });
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return error;
+        let transporter:any;
+        let mailOptions:object;
+
+        if (APP_CONFIGURATION.NODEMAILER.USE_GMAIL) {
+            mailOptions = {
+                from: APP_CONFIGURATION.NODEMAILER.GMAIL.GMAIL_USERNAME,
+                to: this.to,
+                subject: this.subject,
+                html: this.message
+            };
+            transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: APP_CONFIGURATION.NODEMAILER.GMAIL.GMAIL_USERNAME,
+                    pass: APP_CONFIGURATION.NODEMAILER.GMAIL.GMAIL_PASSWORD
+                }
+            });
+        } else {
+            mailOptions = {
+                from: APP_CONFIGURATION.NODEMAILER.DEFAULT.SENDER_EMAIL,
+                to: this.to,
+                subject: this.subject,
+                html: this.message
+            };
+            transporter = nodemailer.createTransport({
+                host: APP_CONFIGURATION.NODEMAILER.DEFAULT.HOST_SMTP,
+                port: APP_CONFIGURATION.NODEMAILER.DEFAULT.HOST_PORT,
+                secure: true,
+                auth: {
+                    user: APP_CONFIGURATION.NODEMAILER.DEFAULT.SMTP_USERNAME,
+                    pass: APP_CONFIGURATION.NODEMAILER.DEFAULT.SMTP_PASSWORD
+                },
+                tls: {rejectUnauthorized: false}
+            });
+        }
+        transporter.sendMail(mailOptions, function (err:any, info:any) {
+            if(err) {
+                Helpers.DFLogger('error', 'Hubo un error al enviar el correo electrónico', err);
+                return false;
             } else {
                 return true;
             }

@@ -1,3 +1,4 @@
+// @ts-ignore
 /**
  * ==================================================================
  * Copyright © Dinámica Digital S.A.S.
@@ -6,6 +7,7 @@
  * ==================================================================
  */
 
+// @ts-ignore
 export const APP_CONFIGURATION = {
     APP: {
         APP_NAME: 'Dynamic Framework', // Change for your application or microservice name
@@ -21,7 +23,6 @@ export const APP_CONFIGURATION = {
         USE_MONGOOSE: false, // Set true if you interesing use mongodb
         PARAMETERS: { // Define a mongodb parameters
             URL: '',
-            PORT: '',
             USERNAME: '',
             PASSWORD: '',
             DATABASE: ''
@@ -29,11 +30,19 @@ export const APP_CONFIGURATION = {
     },
     // If you interesed in send emails, configure the information in this section
     NODEMAILER: {
-        TSL_SSL: true,
-        HOST_SMTP: 'smtp.gmail.com',
-        HOST_PORT: 587,
-        SMTP_USERNAME: '',
-        SMTP_PASSWORD: ''
+        USE_GMAIL: true,
+        DEFAULT: {
+            TSL_SSL: false, // Use true for SSL/TLS protocol
+            HOST_SMTP: '', // SMTP host
+            HOST_PORT: 0, // SMTP port
+            SMTP_USERNAME: '', // SMTP password
+            SMTP_PASSWORD: '', // SMTP port
+            SENDER_EMAIL: '' // use any@domain.com
+        },
+        GMAIL: {
+            GMAIL_USERNAME: 'user@gmail.com', // GMAIL username
+            GMAIL_PASSWORD: 'thisispassword' // GMAIL password
+        }
     },
     NAMECHEAP: {
         API_USER: '',

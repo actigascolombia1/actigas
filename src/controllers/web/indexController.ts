@@ -13,7 +13,6 @@ class IndexController {
     public async indexAction (req: Request, res: Response){
         let helpers = new Helpers(req, res);
         try {
-            req.flash('success', 'Mensaje de OK');
             res.render('web/indexView');
         } catch (e) {
             Helpers.DFLogger('error', e);
