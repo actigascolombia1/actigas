@@ -23,7 +23,6 @@ export const APP_CONFIGURATION = {
         USE_MONGOOSE: false, // Set true if you interesing use mongodb
         PARAMETERS: { // Define a mongodb parameters
             URL: '',
-            PORT: '',
             USERNAME: '',
             PASSWORD: '',
             DATABASE: ''
