@@ -13,7 +13,7 @@ import helpers from '../libs/helpers';
 // Initialize database connections validations and expose connection if database connect is defined true
 if (APP_CONFIGURATION.MONGOOSE.USE_MONGOOSE){
     mongoose.Promise = global.Promise;
-    let mongoUri = `mongodb://${APP_CONFIGURATION.MONGOOSE.PARAMETERS.USERNAME}:${APP_CONFIGURATION.MONGOOSE.PARAMETERS.PASSWORD}@${APP_CONFIGURATION.MONGOOSE.PARAMETERS.URL}:${APP_CONFIGURATION.MONGOOSE.PARAMETERS.PORT}/${APP_CONFIGURATION.MONGOOSE.PARAMETERS.DATABASE}`;
+    let mongoUri = `mongodb+srv://${APP_CONFIGURATION.MONGOOSE.PARAMETERS.USERNAME}:${APP_CONFIGURATION.MONGOOSE.PARAMETERS.PASSWORD}@${APP_CONFIGURATION.MONGOOSE.PARAMETERS.URL}/${APP_CONFIGURATION.MONGOOSE.PARAMETERS.DATABASE}?retryWrites=true&w=majority`;
     mongoose.connect(mongoUri, {
         useNewUrlParser: true,
         useUnifiedTopology: true
