@@ -6,17 +6,15 @@
  * ==================================================================
  */
 
-import {Request, Response, NextFunction} from 'express';
+import {Request, Response} from 'express';
 import {APP_CONFIGURATION} from '../config/config';
+import nodeGeocoder from 'node-geocoder';
+import fs from 'fs';
+import nodemailer from 'nodemailer';
 // @ts-ignore
 import randomToken from 'random-token';
 // @ts-ignore
 import generateSeialKey from 'generate-serial-key';
-import nodeGeocoder from 'node-geocoder';
-import fs from 'fs';
-import * as path from "path";
-import {parse} from "ts-node";
-import nodemailer from 'nodemailer';
 
 /**
  * Class for Dynamic basic helpers
@@ -113,57 +111,28 @@ class Helpers {
      * @param errorCode
      * @param frontType
      */
-    public sendExceptionResponse(errorCode: number = 500, frontType: number = 0) {
+    public sendExceptionResponse(errorCode: number = 500) {
         switch (errorCode) {
             case 404:
-                switch (frontType) {
-                    case 0:
-                        this.response.render('web/errorView', {
-                            errorCode: 404,
-                            errorTitle: 'No encontramos nada...',
-                            errorMessage: 'Aparentemente, la página o el recurso que estás solicitando ya no existe o fue movido a otra ubicación',
-                        });
-                        break;
-                    case 1:
-                        this.response.render('admin/errorView', {
-                            errorCode: 404,
-                            errorTitle: 'No encontramos nada...',
-                            errorMessage: 'Aparentemente, la página o el recurso que estás solicitando ya no existe o fue movido a otra ubicación',
-                        });
-                        break;
-                    case 2:
-                        this.response.render('api/errorView', {
-                            errorCode: 404,
-                            errorTitle: 'No encontramos nada...',
-                            errorMessage: 'Aparentemente, la página o el recurso que estás solicitando ya no existe o fue movido a otra ubicación',
-                        });
-                        break;
-                }
+                this.response.render('web/errorView', {
+                    errorCode: 404,
+                    errorTitle: 'No encontramos nada...',
+                    errorMessage: 'Aparentemente, la página o el recurso que estás solicitando ya no existe o fue movido a otra ubicación',
+                });
                 break;
             case 500:
-                switch (frontType) {
-                    case 0:
-                        this.response.render('web/errorView', {
-                            errorCode: 500,
-                            errorTitle: 'Algo malo ha sucedido',
-                            errorMessage: 'Parece que estamos teniendo problemas para procesar tu solicitud. Inténtalo nuevamente y si el problema persiste, por favor contácta con nuestro equipo de soporte técnico',
-                        });
-                        break;
-                    case 1:
-                        this.response.render('admin/errorView', {
-                            errorCode: 500,
-                            errorTitle: 'Algo malo ha sucedido',
-                            errorMessage: 'Parece que estamos teniendo problemas para procesar tu solicitud. Inténtalo nuevamente y si el problema persiste, por favor contácta con nuestro equipo de soporte técnico',
-                        });
-                        break;
-                    case 2:
-                        this.response.render('api/errorView', {
-                            errorCode: 500,
-                            errorTitle: 'Algo malo ha sucedido',
-                            errorMessage: 'Parece que estamos teniendo problemas para procesar tu solicitud. Inténtalo nuevamente y si el problema persiste, por favor contácta con nuestro equipo de soporte técnico',
-                        });
-                        break;
-                }
+                this.response.render('web/errorView', {
+                    errorCode: 500,
+                    errorTitle: 'Algo malo ha sucedido',
+                    errorMessage: 'Parece que estamos teniendo problemas para procesar tu solicitud. Inténtalo nuevamente y si el problema persiste, por favor contácta con nuestro equipo de soporte técnico',
+                });
+                break;
+            default:
+                this.response.render('web/errorView', {
+                    errorCode: 500,
+                    errorTitle: 'Algo malo ha sucedido',
+                    errorMessage: 'Parece que estamos teniendo problemas para procesar tu solicitud. Inténtalo nuevamente y si el problema persiste, por favor contácta con nuestro equipo de soporte técnico',
+                });
                 break;
         }
     }
@@ -191,7 +160,7 @@ class Helpers {
      * @param message
      * @constructor
      */
-    public JSONResponseValidateParameter(message:string){
+    public JSONResponseValidateParameter(message: string) {
         this.JSONResponse(
             APP_CONFIGURATION.HTTP_STATUS_CODE.UNPROCESSABLE_ENTITY.CODE,
             APP_CONFIGURATION.HTTP_STATUS_CODE.UNPROCESSABLE_ENTITY.MESSAGE,
@@ -336,6 +305,78 @@ class Helpers {
             discountValue: discount,
             valueWithDiscount: parseInt(value) - discount
         };
+    }
+
+    /**
+     * Método encargado de enviar correos electrónicos
+     *
+     * @param to
+     * @param subject
+     * @param html
+     */
+    public async sendMail(to: string, subject: string, html: string) {
+        try {
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: APP_CONFIGURATION.NODEMAILER.GMAIL.GMAIL_USERNAME,
+                    pass: APP_CONFIGURATION.NODEMAILER.GMAIL.GMAIL_PASSWORD
+                }
+            });
+
+            let mailOptions = {
+                from: APP_CONFIGURATION.NODEMAILER.GMAIL.GMAIL_USERNAME, // sender address
+                to: to,
+                subject: subject,
+                html: html
+            };
+
+            transporter.sendMail(mailOptions, function (err: any, info: any) {
+                if (err) {
+                    console.log(err);
+                    return false;
+                } else {
+                    console.log('Email enviado');
+                }
+
+            });
+            return true;
+        } catch (e) {
+            console.log(`Método de envío de correos electrónicos`);
+            console.log(JSON.stringify(e));
+        }
+    }
+
+    /**
+     * Método encargado de hashear un dato a base64
+     *
+     * @param string
+     */
+    public async encodeToBase64(string: string){
+        try {
+            return await Buffer.from(string).toString('base64');
+        } catch (e) {
+            console.log(`Método de hasheo a base64`);
+            console.log(JSON.stringify(e));
+        }
+    }
+
+    /**
+     * Método encargado de decodificar un string base64
+     *
+     * @param base64
+     */
+    public async decodeFromBase64(base64: string){
+        try {
+            return await Buffer.from(base64, 'base64').toString();
+        } catch (e) {
+            console.log(`Método de hasheo a base64`);
+            console.log(JSON.stringify(e));
+        }
+    }
+
+    public validateParameter (message: string) {
+        this.request.flash('error', message);
     }
 
 }
