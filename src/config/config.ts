@@ -1,0 +1,111 @@
+// @ts-ignore
+/**
+ * ==================================================================
+ * Copyright © Dinámica Digital S.A.S.
+ * Author: Neyib Alexander Daza Guerrero
+ * Email: dev.alexander.daza@gmail.com
+ * ==================================================================
+ */
+
+// @ts-ignore
+export const APP_CONFIGURATION = {
+    APP: {
+        APP_NAME: 'Actigas', // Change for your application or microservice name
+        APP_VERSION: '0.0.1', // Change for your application or microservice version
+        APP_IP: '127.0.0.1', // Change for your ip
+        APP_PORT: 3000, // Change for your port
+        APP_HTTP_PROTOCOL: 'http', // Change for your dev/prod url
+        APP_BASE_URL: 'http://localhost', // Change for your base domain URL
+        CONSOLE_LOG: true, // Set to true if you need show all logs in console
+        JWT_SECRET_TOKEN: '4CT1G4S', // Define JWT secret token
+    },
+    MONGOOSE: {
+        USE_MONGOOSE: false, // Set true if you interesing use mongodb
+        PARAMETERS: { // Define a mongodb parameters
+            URL: '',
+            USERNAME: '',
+            PASSWORD: '',
+            DATABASE: ''
+        }
+    },
+    // If you interesed in send emails, configure the information in this section
+    NODEMAILER: {
+        USE_GMAIL: true,
+        DEFAULT: {
+            TSL_SSL: false, // Use true for SSL/TLS protocol
+            HOST_SMTP: '', // SMTP host
+            HOST_PORT: 0, // SMTP port
+            SMTP_USERNAME: '', // SMTP password
+            SMTP_PASSWORD: '', // SMTP port
+            SENDER_EMAIL: '' // use any@domain.com
+        },
+        GMAIL: {
+            GMAIL_USERNAME: 'user@gmail.com', // GMAIL username
+            GMAIL_PASSWORD: 'thisispassword' // GMAIL password
+        }
+    },
+    NAMECHEAP: {
+        API_USER: '',
+        API_KEY: '',
+        CLIENT_IP: ''
+    },
+    HTTP_STATUS_CODE: {
+        OK: {
+            CODE: 200,
+            MESSAGE: 'Ok'
+        },
+        CREATED: {
+            CODE: 201,
+            MESSAGE: 'Created'
+        },
+        NOT_CONTENT: {
+            CODE: 204,
+            MESSAGE: 'Not content'
+        },
+        BAD_REQUEST: {
+            CODE: 400,
+            MESSAGE: 'Bad request'
+        },
+        UNAUTHORIZED: {
+            CODE: 401,
+            MESSAGE: 'Unauthorized'
+        },
+        PAYMENT_REQUIRED: {
+            CODE: 402,
+            MESSAGE: 'Payment required'
+        },
+        FORBIDDEN: {
+            CODE: 403,
+            MESSAGE: 'Forbidden'
+        },
+        NOT_FOUND: {
+            CODE: 404,
+            MESSAGE: 'Not found'
+        },
+        GONE: {
+            CODE: 410,
+            MESSAGE: 'Gone'
+        },
+        UNPROCESSABLE_ENTITY: {
+            CODE: 422,
+            MESSAGE: 'Unprocessable entity'
+        },
+        INTERNAL_SERVER_ERROR: {
+            CODE: 500,
+            MESSAGE: 'Internal server error'
+        },
+        NOT_IMPLEMENTED: {
+            CODE: 501,
+            MESSAGE: 'Not implemented'
+        },
+        BAD_GATEWAY: {
+            CODE: 502,
+            MESSAGE: 'Bad gateway'
+        },
+    },
+    CUSTOM_CONFIGURATION: {
+        // Use this segment for configure your customs constants
+        // PAYU_LATAM_ACCOUNT: {},
+        // EPAYCO_ACCOUNT: {}
+    }
+};
