@@ -18,7 +18,7 @@ class Mail {
         public message?: string) {
     }
 
-    sendMail() {
+    sendMail(com: string, subject: any, messageMail: string) {
         let transporter:any;
         let mailOptions:object;
 
@@ -56,6 +56,7 @@ class Mail {
         }
         transporter.sendMail(mailOptions, function (err:any, info:any) {
             if(err) {
+                console.log(err);
                 Helpers.DFLogger('error', 'Hubo un error al enviar el correo electrónico', err);
                 return false;
             } else {

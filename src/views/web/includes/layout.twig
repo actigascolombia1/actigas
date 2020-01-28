@@ -1,10 +1,150 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="Dinámica Digital SAS" />
+    <meta name="robots" content="" />
+    <meta name="description" content="Actigas - Mantenimiento y reparación de gasodomésticos y electrodomésticos" />
+    <meta property="og:title" content="Actigas - Mantenimiento y reparación de gasodomésticos y electrodomésticos" />
+    <meta property="og:description" content="Brindamos soluciones en mantenimiento y sostenimiento de gasodomésticos y electrodomésticos residenciales e industriales." />
+    <meta property="og:image" content="/images/favicon.png" />
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- FAVICONS ICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png" />
+
+    <!-- PAGE TITLE HERE -->
+    <title>{% block title %}{% endblock %} - Actigas - Ingeniería Hidráulica Especializada</title>
+
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="/css/plugins.min.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/flaticon/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/themify/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.min.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="/css/skin/skin-4.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/templete.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/libs/toastr/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/css/custom.css">
+    <!-- Google Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Playfair+Display:400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap');
+    </style>
+
+    <!-- REVOLUTION SLIDER CSS -->
+    <link rel="stylesheet" type="text/css" href="/plugins/revolution/revolution/css/revolution.min.css">
+
 </head>
-<body>
-{% block body %}{% endblock %}
+<body id="bg">
+<div class="loading hidden" id="loading"></div>
+<div class="page-wraper">
+    <div id="loading-area" class="solar-loading"></div>
+    {% block slider %}{% endblock %}
+    {% include './header.twig' %}
+    {% block body %}{% endblock %}
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="section-full p-t50 p-b20 bg-primary text-white overlay-primary-dark footer-info-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.3s">
+                        <div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+                            <div class="icon-content">
+                                <h5 class="dlab-tilte">
+                                    <span class="icon-sm"><i class="ti-location-pin"></i></span>
+                                    Dirección principal
+                                </h5>
+                                <p class="m-b0  op7">Calle 130 85 60, Bogotá - Colombia</p>
+                                <p class="op7">&nbsp;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.3s">
+                        <div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+                            <div class="icon-content">
+                                <h5 class="dlab-tilte">
+                                    <span class="icon-sm"><i class="ti-email"></i></span>
+                                    Correo electrónico
+                                </h5>
+                                <p class="m-b0 op7">info@actigas.co</p>
+                                <p class="op7">&nbsp;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.3s">
+                        <div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+                            <div class="icon-content">
+                                <h5 class="dlab-tilte">
+                                    <span class="icon-sm"><i class="ti-mobile"></i></span>
+                                    Teléfono
+                                </h5>
+                                <p class="m-b0 op7">Celular: +573118387575</p>
+                                <p class="op7">Teléfono: +5716818325</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.3s">
+                        <div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+                            <div class="icon-content">
+                                <h5 class="dlab-tilte">
+                                    <span class="icon-sm"><i class="ti-alert"></i></span>
+                                    Emergencias 24 Horas
+                                </h5>
+                                <p class="m-b0 op7">Teléfono: +5716811665</p>
+                                <p class="op7">Domingo - Domingo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-left "> <span>Copyright © {{ "now"|date('Y') }} Actigas. Todos los derechos reservados.</span> </div>
+                    <div class="col-md-6 col-sm-6 text-right ">
+                        <div class="widget-link ">
+                            <ul>
+                                <li>Desarrollado por <a href="https://www.dinamicadigital.co" target="_blank"> Dinámica Digital SAS</a></li>
+                                <li>Fábrica de Software</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <button class="scroltop style2 radius" type="button"><i class="fa fa-arrow-up"></i></button>
+</div>
+<!-- JAVASCRIPT FILES ========================================= -->
+<script src="/js/combining.js"></script><!-- CONTACT JS  -->
+<script src="/js/jquery.lazy.min.js"></script>
+<!-- REVOLUTION JS FILES -->
+<script src="/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script src="/js/rev.slider.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        'use strict';
+        dz_rev_slider_1();
+        $('.lazy').Lazy();
+    });	/*ready*/
+</script>
+<script src="/libs/libs/sweetalerts/sweetalert.min.js"></script>
+<script src="/libs/libs/toastr/toastr.min.js"></script>
+<script src="/libs/js/helpers.js"></script>
+{% block customJs %}{% endblock %}
 </body>
 </html>
