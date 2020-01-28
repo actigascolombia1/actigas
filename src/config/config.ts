@@ -13,7 +13,7 @@ export const APP_CONFIGURATION = {
         APP_NAME: 'Actigas', // Change for your application or microservice name
         APP_VERSION: '0.0.1', // Change for your application or microservice version
         APP_IP: '127.0.0.1', // Change for your ip
-        APP_PORT: 3000, // Change for your port
+        APP_PORT: 3001, // Change for your port
         APP_HTTP_PROTOCOL: 'http', // Change for your dev/prod url
         APP_BASE_URL: 'http://localhost', // Change for your base domain URL
         CONSOLE_LOG: true, // Set to true if you need show all logs in console

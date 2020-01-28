@@ -59,10 +59,6 @@ app.use(function (req, res, next) {
     app.locals.errorMessage = req.flash('error');
     app.locals.warningMessage = req.flash('warning');
     app.locals.infoMessage = req.flash('info');
-    console.log('Res:');
-    console.log(res.locals);
-    console.log('App:');
-    console.log(app.locals);
     next();
 });
 
