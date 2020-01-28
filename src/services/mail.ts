@@ -56,6 +56,7 @@ class Mail {
         }
         transporter.sendMail(mailOptions, function (err:any, info:any) {
             if(err) {
+                console.log(err);
                 Helpers.DFLogger('error', 'Hubo un error al enviar el correo electrónico', err);
                 return false;
             } else {
