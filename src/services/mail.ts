@@ -18,7 +18,7 @@ class Mail {
         public message?: string) {
     }
 
-    sendMail() {
+    sendMail(com: string, subject: any, messageMail: string) {
         let transporter:any;
         let mailOptions:object;
 

@@ -15,5 +15,7 @@ import {indexController} from '../controllers/web/indexController';
 
 // Site Router
 router.get('/', indexController.indexAction);
+router.get('/contacto/:service', indexController.contactAction);
+router.post('/contacto', indexController.storeContact);
 
 export default router;

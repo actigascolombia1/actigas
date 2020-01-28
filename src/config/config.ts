@@ -40,8 +40,8 @@ export const APP_CONFIGURATION = {
             SENDER_EMAIL: '' // use any@domain.com
         },
         GMAIL: {
-            GMAIL_USERNAME: 'user@gmail.com', // GMAIL username
-            GMAIL_PASSWORD: 'thisispassword' // GMAIL password
+            GMAIL_USERNAME: 'noreply.dinamicadigital@gmail.com', // GMAIL username
+            GMAIL_PASSWORD: 'Tr3nx2013..#' // GMAIL password
         }
     },
     NAMECHEAP: {

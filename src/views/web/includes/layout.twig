@@ -36,6 +36,8 @@
     <link rel="stylesheet" type="text/css" href="/css/style.min.css">
     <link class="skin" rel="stylesheet" type="text/css" href="/css/skin/skin-4.min.css">
     <link rel="stylesheet" type="text/css" href="/css/templete.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/libs/toastr/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/css/custom.css">
     <!-- Google Font -->
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Playfair+Display:400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap');
@@ -46,6 +48,7 @@
 
 </head>
 <body id="bg">
+<div class="loading hidden" id="loading"></div>
 <div class="page-wraper">
     <div id="loading-area" class="solar-loading"></div>
     {% block slider %}{% endblock %}
@@ -99,7 +102,7 @@
                                     <span class="icon-sm"><i class="ti-alert"></i></span>
                                     Emergencias 24 Horas
                                 </h5>
-                                <p class="m-b0 op7">Celular: +5716811665</p>
+                                <p class="m-b0 op7">Teléfono: +5716811665</p>
                                 <p class="op7">Domingo - Domingo</p>
                             </div>
                         </div>
@@ -140,5 +143,8 @@
         $('.lazy').Lazy();
     });	/*ready*/
 </script>
+<script src="/libs/libs/sweetalerts/sweetalert.min.js"></script>
+<script src="/libs/libs/toastr/toastr.min.js"></script>
+<script src="/libs/js/helpers.js"></script>
 </body>
 </html>
